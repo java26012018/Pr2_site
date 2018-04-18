@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BMW Motors</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    </head>
+    <body>
+        <div id='header' align='center' style='height: 45px; background-color: aquamarine; align-content: center'>
+            <h1>BMW Motors Ukraine</h1>
+        </div>
+        <div id='search' align='center' style='height: 25px; background-color: coral; align-content: center'>
+            <form action='/Pr2_site/main'>
+                Search:<input name='q'/>
+                <input type='submit' value='Search'/>
+            </form>
+        </div>
+        <div id='menu' align='center' style='height: 50px; background-color: violet; align-content: center'>
+            <table>
+                <tr>
+                    <td width='200px'>
+                        <h1><a href='/Pr2_site/main?cat=car'>Car</a></h1>
+                    </td>
+                    <td width='200px'>
+                        <h1><a href='/Pr2_site/main?cat=suw'>SUW</a></h1>
+                    </td>
+                    <td width='200px'>
+                        <h1><a href='/Pr2_site/main?cat=electro'>Electro</a></h1>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id='content' align='center' style='background-color: antiquewhite; align-content: center'>
+            <h1>Sign In Page</h1>
+            <form action='/Pr2_site/login' method='POST'>
+                Input login:<input name='login'/><br/>
+                Input pass: <input type='password' name='pass'/><br/>
+                <input type='submit' value='Sign In'/>
+            </form>
+            <form action='/Pr2_site/register'>
+                <input type='submit' value='Register'/>
+            </form>
+            
+            <table>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table>
+            
+            <div style='height: 100px'>
+                <table>
+                    <tr>
+                        <td>
+                            <h1></h1>
+                        </td>
+                        <td>
+                            <img style='height: 100px' src=''/>
+                        </td>
+                        <td style='width: 400px'>
+                            <h3></h3>
+                        </td>
+                        <td>
+                            <h1> UAH</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div><hr/>
+        </div>
+        <div id='footer' align='center' style='height: 15px; background-color: darkgoldenrod; align-content: center'>
+            <h6>Copyright Alex</h6>
+        </div>
+    </body>
+</html>
