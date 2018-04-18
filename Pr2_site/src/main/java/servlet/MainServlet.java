@@ -4,6 +4,8 @@ import dao.ItemDao;
 import entity.Item;
 import entity.User;
 import html.HtmlFormer;
+import service.AuthenticationService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -16,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 public class MainServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("exit") != null){
-            request.getSession().removeAttribute("user");
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        AuthenticationService.removeUserAttributeFromSession(request.getParameter("exit"), request.getSession());
+
         User u = (User)request.getSession().getAttribute("user");
         List<Item> items;
         String cat = request.getParameter("cat");
