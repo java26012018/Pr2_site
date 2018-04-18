@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ItemServlet extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User u = (User)request.getSession().getAttribute("user");
