@@ -180,4 +180,47 @@ public class HtmlFormer {
         out += end;
         return out;
     }
+
+    public static String profile(){
+        String out;
+        out = "<head>\n" +
+                "</head>\n" +
+                "<body style='background: aquamarine; padding: 0; margin: 0;'>\n" +
+                "<div style='height: 100px; width: 100%; text-align: center; background: aqua; display: flex; flex-direction: column;\n" +
+                "justify-content: center; font-size: 40px; color: coral'>\n" +
+                "    <a href='/Pr2_site/main'>BMW MOTORS</a>\n" +
+                "</div>\n" +
+                "<div style='float: left; height: 300px; width: 300px; background: blueviolet'>\n" +
+                "    <p>User's photo</p>\n" +
+                "</div>\n" +
+                "<div style='float: right'>\n" +
+                "<form action='/Pr2_site/change'>\n" +
+                "    <input style='font-size: 30px; color: coral;' type='submit' value='Change password'/>\n" +
+                "</form>\n" +
+                "<a style='display: block; text-align: center; width: inherit; margin-top: 10px; background: azure; margin-left: auto; font-size: 30px'\n" +
+                "   href='/Pr2_site/basket'>Your basket</a>\n" +
+                "</div>\n" +
+                "</body>\n" +
+                "</html>";
+        return out;
+    }
+
+    public static String changePass(){
+        String out;
+        out = "<head>\n" +
+                "</head>\n" +
+                "<body style='background: aquamarine; padding: 0; margin: 0; text-align: center; font-size: 60px'>\n" +
+                "<h1>Changing password</h1>\n" +
+                "<div style=\"display: flex; justify-content: center;\">\n" +
+                "           <form action='/Pr2_site/change' method='POST'>\n" +
+                "                    Input old password:<input name='oldpassword'/><br/>\n" +
+                "               Input new password: <input type='password' name='pass1'/><br/>\n" +
+                "                 Input new password again: <input type='password' name='pass2'/><br/>\n" +
+                "                  <input style='font-size: 40px' type='submit' value='Change'/>\n" +
+                "              </form>\n" +
+                "</div>\n" +
+                "</body>\n" +
+                "</html>";
+        return out;
+    }
 }
