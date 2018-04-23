@@ -5,6 +5,14 @@
         <servlet-class>servlet.MainServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ChangeServlet</servlet-name>
+        <servlet-class>servlet.ChangeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>servlet.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ItemServlet</servlet-name>
         <servlet-class>servlet.ItemServlet</servlet-class>
     </servlet>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>BasketServlet</servlet-name>
         <url-pattern>/basket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeServlet</servlet-name>
+        <url-pattern>/change</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
