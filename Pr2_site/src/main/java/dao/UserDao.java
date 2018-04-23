@@ -12,7 +12,7 @@ public class UserDao extends Dao {
 
     public static User getByLogin(String login) {
         User out = null;
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM bmwuser WHERE login='" + login + "'");
             if (rs.next()) {
                 out = new User(
@@ -28,7 +28,7 @@ public class UserDao extends Dao {
     }
     
     public static void add(User u){
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             st.executeUpdate(
                     "INSERT INTO bmwuser VALUES("+
                             u.getId()+",'"+
@@ -41,13 +41,21 @@ public class UserDao extends Dao {
     }
     
     public static void update(User u){
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             st.executeUpdate(
                     "UPDATE bmwuser SET login='"+
                             u.getLogin()+"', pass='"+
                             u.getPass()+"', basket='"+
                             u.getBasket()+"' WHERE id="+
                             u.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void remove(User u){
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
+            st.executeUpdate("DELETE bmwuser WHERE id="+u.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
