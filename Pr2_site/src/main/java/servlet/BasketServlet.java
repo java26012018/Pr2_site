@@ -7,19 +7,22 @@ import entity.Basket;
 import entity.Item;
 import entity.User;
 import html.HtmlFormer;
+import spring.SpringContextHolder;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class BasketServlet extends HttpServlet {
 
+    private final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User u = (User) request.getSession().getAttribute("user");
         if (u == null) {
             response.sendRedirect("/Pr2_site/main");
@@ -52,7 +55,7 @@ public class BasketServlet extends HttpServlet {
             } else {
                 List<Item> items = new LinkedList<>();
                 for (Integer id : b.items) {
-                    items.add(ItemDao.getById(id));
+                    items.add(idao.getById(id));
                 }
                 response.setContentType("text/html;charset=UTF-8");
                 try (PrintWriter out = response.getWriter()) {

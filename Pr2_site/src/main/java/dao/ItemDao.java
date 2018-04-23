@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Item;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,9 +10,9 @@ import java.util.List;
 
 public class ItemDao extends Dao{
 
-    public static List<Item> get() {
+    public List<Item> get() {
         List<Item> out = new LinkedList<>();
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM bmwitem");
             while (rs.next()) {
                 out.add(new Item(rs.getInt("id"),
@@ -27,9 +28,9 @@ public class ItemDao extends Dao{
         return out;
     }
 
-    public static List<Item> getByCategoty(String category) {
+    public List<Item> getByCategoty(String category) {
         List<Item> out = new LinkedList<>();
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM bmwitem WHERE cat='" + category + "'");
             while (rs.next()) {
                 out.add(new Item(rs.getInt("id"),
@@ -45,9 +46,9 @@ public class ItemDao extends Dao{
         return out;
     }
 
-    public static Item getById(int id) {
+    public Item getById(int id) {
         Item out = new Item();
-        try (Connection c = getConnection(); Statement st = c.createStatement();) {
+        try (Connection c = getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM bmwitem WHERE id=" + id + "");
             rs.next();
             out.setId(rs.getInt("id"));

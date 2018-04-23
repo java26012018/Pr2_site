@@ -1,12 +1,10 @@
 package dao;
 
-import static dao.Dao.getConnection;
-import entity.Item;
 import entity.User;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Random;
 
 public class UserDao extends Dao {
 
@@ -55,7 +53,7 @@ public class UserDao extends Dao {
 
     public static void remove(User u){
         try (Connection c = getConnection(); Statement st = c.createStatement()) {
-            st.executeUpdate("DELETE bmwuser WHERE id="+u.getId());
+            st.executeUpdate("DELETE FROM bmwuser WHERE id=" + u.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
