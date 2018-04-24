@@ -7,6 +7,7 @@ import entity.Basket;
 import entity.Item;
 import entity.User;
 import html.HtmlFormer;
+import service.UserService;
 import spring.SpringContextHolder;
 
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User u = (User) request.getSession().getAttribute("user");
+        User u = UserService.getUserFromSession(request.getSession());
         if (u == null) {
             response.sendRedirect("/Pr2_site/main");
         } else {
