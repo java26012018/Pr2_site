@@ -10,17 +10,13 @@ import spring.SpringContextHolder;
 
 
 public class ItemServiceTest {
-    private List<Item> list=null;
+
     private  static final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
 
-//    @Before
-//    public void init(){
-//        list = mock(List.class);
-//    }
     @Test
     public void formItemsForMainServletTest (){
-
-
+        List<Item> list=null;
+        List<Item> emptyList = new LinkedList<>();
         String cat;
         String q;
        assertNull(list);
@@ -28,7 +24,11 @@ public class ItemServiceTest {
         list= idao.getByCategoty(cat);
         assertNotNull(list);
         assertEquals(list.get(1).getCat(), cat );
-        list=null; q="3";
+
+        cat="NONAME_cat";
+        list=idao.getByCategoty(cat);
+        assertEquals(emptyList, list);
+        q="3";
             List<Item> allItems = idao.get();
             list = new LinkedList<>();
             for (Item i : allItems) {
@@ -37,5 +37,15 @@ public class ItemServiceTest {
                 }
             }
         assertNotNull(list);
+        q="NONAME_q";
+            allItems = idao.get();
+            list = new LinkedList<>();
+            for (Item i : allItems) {
+                if (i.getModel().contains(q)) {
+                    list.add(i);
+                }
+        }
+        assertEquals(emptyList, list);
+
 
 }}
