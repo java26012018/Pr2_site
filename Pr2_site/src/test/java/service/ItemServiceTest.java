@@ -3,23 +3,25 @@ package service;
 import dao.ItemDao;
 import entity.Item;
 import org.junit.Test;
+import spring.SpringContextHolder;
+
 import java.util.LinkedList;
 import java.util.List;
-import static org.junit.Assert.*;
-import spring.SpringContextHolder;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class ItemServiceTest {
 
-    private  static final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
+    private final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
 
     @Test
     public void formItemsForMainServletTest (){
-        List<Item> list=null;
+        List<Item> list;
         List<Item> emptyList = new LinkedList<>();
         String cat;
         String q;
-       assertNull(list);
         cat="e";
         list= idao.getByCategoty(cat);
         assertNotNull(list);

@@ -5,9 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringContextHolder {
 
-    private static final AbstractXmlApplicationContext context =
-            new ClassPathXmlApplicationContext("spring-context.xml");
+    private static final AbstractXmlApplicationContext context;
 
+    static {
+        context = new ClassPathXmlApplicationContext("spring-context.xml");
+    }
     private SpringContextHolder() {
     }
 

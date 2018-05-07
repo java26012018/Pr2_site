@@ -3,6 +3,7 @@ package servlet;
 import dao.UserDao;
 import entity.User;
 import html.HtmlFormer;
+import spring.SpringContextHolder;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,9 @@ import java.io.PrintWriter;
 
 public class ChangeServlet extends HttpServlet {
 
+    private final UserDao udao = (UserDao) SpringContextHolder.getContext().getBean("udao");
+    private final HtmlFormer html = (HtmlFormer) SpringContextHolder.getContext().getBean("html");
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User u = (User) request.getSession().getAttribute("user");
@@ -20,7 +24,7 @@ public class ChangeServlet extends HttpServlet {
         } else {
             try (PrintWriter out = response.getWriter()) {
                 response.setContentType("text/html;charset=UTF-8");
-                out.println(HtmlFormer.changePass());
+                out.println(html.changePass());
             }
         }
     }
@@ -34,7 +38,7 @@ public class ChangeServlet extends HttpServlet {
             String pass2 = request.getParameter("pass2");
             if (u.getPass().equals(oldpass) && pass1 != null && pass1.equals(pass2)) {
                 u.setPass(pass1);
-                UserDao.update(u);
+                udao.update(u);
                 response.sendRedirect("/Pr2_site/main");
             } else {
                 response.sendRedirect("/Pr2_site/change");

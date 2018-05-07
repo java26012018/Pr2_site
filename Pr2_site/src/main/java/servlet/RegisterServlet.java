@@ -5,32 +5,36 @@ import dao.UserDao;
 import entity.Basket;
 import entity.User;
 import html.HtmlFormer;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Random;
-import javax.servlet.ServletException;
+import spring.SpringContextHolder;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Random;
 
 public class RegisterServlet extends HttpServlet {
 
+    private final UserDao udao = (UserDao) SpringContextHolder.getContext().getBean("udao");
+    private final HtmlFormer html = (HtmlFormer) SpringContextHolder.getContext().getBean("html");
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User u = (User)request.getSession().getAttribute("user");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(HtmlFormer.contentRegister(HtmlFormer.top("Register Page", u), HtmlFormer.end()));
+            out.println(html.contentRegister(html.top("Register Page", u), html.end()));
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String login = request.getParameter("login");
         String pass1 = request.getParameter("pass1");
         String pass2 = request.getParameter("pass2");
-        if(pass1 != null && pass1.equals(pass2) && login != null && UserDao.getByLogin(login) == null){
-            UserDao.add(new User(new Random().nextInt(), login, pass2, new Gson().toJson(new Basket())));
+        if (pass1 != null && pass1.equals(pass2) && login != null && udao.getByLogin(login) == null) {
+            udao.add(new User(new Random().nextInt(), login, pass2, new Gson().toJson(new Basket())));
         }
         response.sendRedirect("/Pr2_site/main");
     }

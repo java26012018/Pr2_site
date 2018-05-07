@@ -21,6 +21,8 @@ import java.util.List;
 public class BasketServlet extends HttpServlet {
 
     private final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
+    private final UserDao udao = (UserDao) SpringContextHolder.getContext().getBean("udao");
+    private final HtmlFormer html = (HtmlFormer) SpringContextHolder.getContext().getBean("html");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -50,7 +52,7 @@ public class BasketServlet extends HttpServlet {
                         b.items.remove(id);
                     }
                     u.setBasket(gson.toJson(b));
-                    UserDao.update(u);
+                    udao.update(u);
                 }
                 response.sendRedirect("/Pr2_site/basket");
             } else {
@@ -60,7 +62,7 @@ public class BasketServlet extends HttpServlet {
                 }
                 response.setContentType("text/html;charset=UTF-8");
                 try (PrintWriter out = response.getWriter()) {
-                    out.println(HtmlFormer.contentBasket(HtmlFormer.top("Your Basket", u), HtmlFormer.end(), items));
+                    out.println(html.contentBasket(html.top("Your Basket", u), html.end(), items));
                 }
 
             }

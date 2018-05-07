@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 public class ItemServlet extends HttpServlet {
 
     private final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");
+    private final HtmlFormer html = (HtmlFormer) SpringContextHolder.getContext().getBean("html");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +31,7 @@ public class ItemServlet extends HttpServlet {
             Item item = idao.getById(id);
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
-                out.println(HtmlFormer.contentItem(HtmlFormer.top(" - "+item.getModel(), u), HtmlFormer.end(), item, u));
+                out.println(html.contentItem(html.top(" - " + item.getModel(), u), html.end(), item, u));
             }
         }
     }

@@ -2,11 +2,12 @@ package html;
 
 import entity.Item;
 import entity.User;
+
 import java.util.List;
 
 public class HtmlFormer {
 
-    public static String top(String title, User u) {
+    public String top(String title, User u) {
         String out = "<html>\n"
                 + "    <head>\n"
                 + "        <title>BMW Motors " + title + "</title>\n"
@@ -64,7 +65,7 @@ public class HtmlFormer {
         return out;
     }
 
-    public static String end() {
+    public String end() {
         return "        </div>\n"
                 + "        <div id='footer' align='center' style='height: 15px; background-color: darkgoldenrod; align-content: center'>\n"
                 + "            <h6>Copyright Alex</h6>\n"
@@ -73,7 +74,7 @@ public class HtmlFormer {
                 + "</html>";
     }
 
-    public static String contentMain(String top, String end, List<Item> items) {
+    public String contentMain(String top, String end, List<Item> items) {
         String out = top;
         for (Item i : items) {
             out += "            <a href='/Pr2_site/item?id=" + i.getId() + "'><div style='height: 100px'>\n"
@@ -99,7 +100,7 @@ public class HtmlFormer {
         return out;
     }
 
-    public static String contentItem(String top, String end, Item item, User u) {
+    public String contentItem(String top, String end, Item item, User u) {
         String out = top
                 + "            <div>\n"
                 + "                <table>\n"
@@ -123,8 +124,8 @@ public class HtmlFormer {
         return out;
     }
 
-    public static String contentLogin(String top, String end) {
-        String out = top
+    public String contentLogin(String top, String end) {
+        return top
                 + "            <h1>Sign In Page</h1>\n"
                 + "            <form action='/Pr2_site/login' method='POST'>\n"
                 + "                Input login:<input name='login'/><br/>\n"
@@ -135,11 +136,10 @@ public class HtmlFormer {
                 + "                <input type='submit' value='Register'/>\n"
                 + "            </form>"
                 + end;
-        return out;
     }
 
-    public static String contentRegister(String top, String end) {
-        String out = top
+    public String contentRegister(String top, String end) {
+        return top
                 + "            <h1>Register Page</h1>\n"
                 + "            <form action='/Pr2_site/register' method='POST'>\n"
                 + "                Input login:<input name='login'/><br/>\n"
@@ -148,10 +148,9 @@ public class HtmlFormer {
                 + "                <input type='submit' value='Register'/>\n"
                 + "            </form>\n"
                 + end;
-        return out;
     }
 
-    public static String contentBasket(String top, String end, List<Item> items) {
+    public String contentBasket(String top, String end, List<Item> items) {
         String out = top;
         out += "<a href='/Pr2_site/basket?id=0'>"
                 + "<input type='submit' value='Clear Basket'/>"
@@ -181,7 +180,7 @@ public class HtmlFormer {
         return out;
     }
 
-    public static String profile(){
+    public String profile() {
         String out;
         out = "<head>\n" +
                 "</head>\n" +
@@ -205,7 +204,7 @@ public class HtmlFormer {
         return out;
     }
 
-    public static String changePass(){
+    public String changePass() {
         String out;
         out = "<head>\n" +
                 "</head>\n" +

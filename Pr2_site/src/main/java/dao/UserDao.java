@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class UserDao extends Dao {
 
-    public static User getByLogin(String login) {
+    public User getByLogin(String login) {
         User out = null;
         try (Connection c = getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM bmwuser WHERE login='" + login + "'");
@@ -24,8 +24,8 @@ public class UserDao extends Dao {
         }
         return out;
     }
-    
-    public static void add(User u){
+
+    public void add(User u) {
         try (Connection c = getConnection(); Statement st = c.createStatement()) {
             st.executeUpdate(
                     "INSERT INTO bmwuser VALUES("+
@@ -37,8 +37,8 @@ public class UserDao extends Dao {
             e.printStackTrace();
         }
     }
-    
-    public static void update(User u){
+
+    public void update(User u) {
         try (Connection c = getConnection(); Statement st = c.createStatement()) {
             st.executeUpdate(
                     "UPDATE bmwuser SET login='"+
@@ -51,7 +51,7 @@ public class UserDao extends Dao {
         }
     }
 
-    public static void remove(User u){
+    public void remove(User u) {
         try (Connection c = getConnection(); Statement st = c.createStatement()) {
             st.executeUpdate("DELETE FROM bmwuser WHERE id=" + u.getId());
         } catch (Exception e) {
