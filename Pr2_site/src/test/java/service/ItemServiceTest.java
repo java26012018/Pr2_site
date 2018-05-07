@@ -2,6 +2,7 @@ package service;
 
 import dao.ItemDao;
 import entity.Item;
+import org.junit.Ignore;
 import org.junit.Test;
 import spring.SpringContextHolder;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-
+@Ignore
 public class ItemServiceTest {
 
     private final ItemDao idao = (ItemDao) SpringContextHolder.getContext().getBean("idao");

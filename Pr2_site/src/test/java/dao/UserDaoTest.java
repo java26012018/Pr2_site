@@ -1,13 +1,14 @@
 package dao;
 
 import entity.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import spring.SpringContextHolder;
 
 import java.util.Random;
 
 import static org.junit.Assert.*;
-
+@Ignore
 public class UserDaoTest {
 
     private final UserDao udao = (UserDao) SpringContextHolder.getContext().getBean("udao");
